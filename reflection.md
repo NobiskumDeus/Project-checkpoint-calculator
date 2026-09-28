@@ -1,0 +1,3 @@
+# Project Checkpoint Reflection
+
+I selected the Java Maven Calculator Web App because it is a small, easy-to-understand project with one main calculator service, so it should be manageable for the final testing project. I added JUnit 5 tests for addition with a negative number and division with whole-number inputs. The project originally used JUnit 4 and an old coverage plugin, so I added the JUnit 5 dependency, updated the test plugin, and disabled the automatic coverage step because it was not compatible with the current JDK. After the setup was finished, both JUnit 5 tests ran successfully with no failures.
