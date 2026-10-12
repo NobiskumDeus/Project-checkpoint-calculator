@@ -23,7 +23,7 @@ The data-flow analysis focuses on `CalculatorResponse`. Its constructor defines 
 
 ## 4. Coverage results and interpretation
 
-The Week 7 GitHub Actions run completed successfully and generated the following JaCoCo CSV totals. The first successful coverage run executed 24 JUnit 5 tests; the legacy smoke-test class has since been refactored to JUnit 5 so it will also be included by the JUnit Platform provider.
+The final Week 7 GitHub Actions run completed successfully with 29 tests (29 passed, 0 failures, 0 errors, 0 skipped) and generated the following JaCoCo CSV totals.
 
 | JaCoCo metric | Week 7 result | Interpretation |
 |---|---:|---|
