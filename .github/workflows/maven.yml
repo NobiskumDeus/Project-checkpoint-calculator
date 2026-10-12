@@ -24,6 +24,11 @@ jobs:
       - name: Build, run tests, and generate JaCoCo report
         run: mvn -B clean package
 
+      - name: Print JaCoCo CSV summary
+        if: always()
+        run: |
+          if [ -f target/site/jacoco/jacoco.csv ]; then cat target/site/jacoco/jacoco.csv; else echo 'JaCoCo CSV was not generated'; fi
+
       - name: Upload JaCoCo HTML report
         if: always()
         uses: actions/upload-artifact@v4
