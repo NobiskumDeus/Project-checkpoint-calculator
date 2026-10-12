@@ -287,3 +287,40 @@ $ docker push <Your-ACR-Login-Server>/calculator
 - [Jenkins Pipeline](https://jenkins.io/doc/book/pipeline/)
 
 
+
+
+---
+
+## Week 7: Final Testing Project
+
+### Build and test
+
+Requirements: JDK 17 and Maven 3.8+ (the source/target compatibility remains Java 8). From the repository root, run:
+
+```bash
+mvn -B clean package
+```
+
+This compiles the project, runs the JUnit 4 legacy tests and JUnit 5 tests, packages the WAR, and generates the JaCoCo report during the test phase. Open `target/site/jacoco/index.html` for the coverage summary and click a class for line/method detail. Test reports are in `target/surefire-reports/`.
+
+To run tests only:
+
+```bash
+mvn -B clean test
+```
+
+### Testing strategy
+
+- **Black-box tests:** assert observable calculator results and the `ping` greeting.
+- **Equivalence partitioning:** positive, negative, and zero operands; exact and fractional integer division.
+- **Boundary-value tests:** zero operands and Java `int` limits/overflow behavior. The overflow tests document Java semantics; they do not imply wraparound is necessarily the desired product requirement.
+- **White-box/path tests:** exercise each straight-line arithmetic method and the exceptional division-by-zero path.
+- **Data-flow (DU) tests:** verify values assigned by `CalculatorResponse`'s constructor can be read through `getX`, `getY`, `getResult`, and `getTime`.
+
+See [`docs/CFG_DU_ANALYSIS.md`](docs/CFG_DU_ANALYSIS.md) for the control-flow and data-flow discussion and [`docs/FINAL_TESTING_REPORT.md`](docs/FINAL_TESTING_REPORT.md) for the report draft.
+
+### Continuous integration
+
+GitHub Actions workflow: [`.github/workflows/maven.yml`](.github/workflows/maven.yml). On each push or pull request targeting `main`, it checks out the repository, configures Temurin JDK 17, and runs `mvn -B clean package`. The workflow uploads the HTML coverage report as an artifact when it is available. A green run means the configured Maven build and tests completed successfully.
+
+After the Week 7 workflow succeeds, capture a screenshot showing the workflow name, green success status, branch/commit, and run time. Save it as `docs/week7-ci-success.png`. Also capture the JaCoCo summary and a class-detail page from the final run; save them as `docs/jacoco-summary.png` and `docs/jacoco-detail.png`. Do not reuse old Week 4 screenshots as if they represented Week 7 results.
