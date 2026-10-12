@@ -23,17 +23,17 @@ The data-flow analysis focuses on `CalculatorResponse`. Its constructor defines 
 
 ## 4. Coverage results and interpretation
 
-Run `mvn -B clean package` and inspect `target/site/jacoco/index.html` after the final test changes. Insert the exact Week 7 results in the table below; do not reuse Week 4 percentages because the test suite has changed.
+The Week 7 GitHub Actions run completed successfully and generated the following JaCoCo CSV totals. The first successful coverage run executed 24 JUnit 5 tests; the legacy smoke-test class has since been refactored to JUnit 5 so it will also be included by the JUnit Platform provider.
 
 | JaCoCo metric | Week 7 result | Interpretation |
 |---|---:|---|
-| Instructions | **[fill from report]** | Fraction of bytecode instructions exercised by tests. |
-| Lines | **[fill from report]** | Source lines executed at least once. |
-| Methods | **[fill from report]** | Methods reached by the tests. |
-| Branches | **[fill from report / N/A]** | Decision outcomes; the service has no explicit source-level branches. |
-| Classes | **[fill from report]** | Classes loaded by the coverage analysis. |
+| Instructions | **100% (81/81 covered)** | All instructions in the two analyzed application classes were exercised. |
+| Lines | **100% (16/16 covered)** | All executable source lines in the two analyzed classes were reached. |
+| Methods | **100% (11/11 covered)** | All reported methods were exercised. |
+| Branches | **N/A (0 branches)** | JaCoCo reports no explicit branch outcomes in these two classes. |
+| Classes | **100% (2/2 covered)** | Both application classes were analyzed and exercised. |
 
-**Required screenshots:** Add `docs/jacoco-summary.png` (the JaCoCo table) and `docs/jacoco-detail.png` (a class-detail view) after capturing them from the final run. Do not claim values until the updated suite has actually run.
+**Detailed results:** `CalculatorService` — 51/51 instructions, 6/6 lines, and 6/6 methods covered. `CalculatorResponse` — 30/30 instructions, 10/10 lines, and 5/5 methods covered. Both classes have 0 branches, so branch coverage is not applicable.\n\n**Required screenshots:** Add `docs/jacoco-summary.png` (the JaCoCo table) and `docs/jacoco-detail.png` (a class-detail view) after capturing them from the final run. The percentages above come from the actual CI-generated `jacoco.csv`; screenshots remain a separate submission requirement.
 
 Uncovered elements should be evaluated individually. A getter may be simple, but testing it can verify the constructor-to-accessor DU pair and protect against future changes. A changing timestamp should be checked for non-null/non-empty behavior rather than compared to a hard-coded time. Web-container routing and JSON serialization remain outside this unit suite, so their absence is a scope limitation rather than evidence that the core arithmetic methods are untested. The final report should name any uncovered methods shown by the actual detailed JaCoCo view and state whether each warrants additional tests.
 
