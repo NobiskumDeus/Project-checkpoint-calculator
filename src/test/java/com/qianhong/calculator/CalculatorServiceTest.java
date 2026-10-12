@@ -1,35 +1,42 @@
 package com.qianhong.calculator;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.*;
-
-public class CalculatorServiceTest {
+/** Refactored legacy smoke tests using JUnit 5 assertions and conventions. */
+class CalculatorServiceTest {
 
     @Test
-    public void testPing() {
-        assertThat(new CalculatorService().ping(), containsString("Welcome to Java Maven Calculator Web App!!!"));
+    @DisplayName("Ping includes the application greeting")
+    void pingIncludesApplicationGreeting() {
+        assertTrue(new CalculatorService().ping()
+                .contains("Welcome to Java Maven Calculator Web App!!!"));
     }
 
     @Test
-    public void testAdd() {
+    @DisplayName("Addition returns the sum")
+    void addReturnsSum() {
         assertEquals(34, new CalculatorService().Add(8, 26).getResult());
     }
 
     @Test
-    public void testSub() {
+    @DisplayName("Subtraction returns the difference")
+    void subtractReturnsDifference() {
         assertEquals(4, new CalculatorService().Sub(12, 8).getResult());
     }
 
     @Test
-    public void testMul() {
+    @DisplayName("Multiplication returns the product")
+    void multiplyReturnsProduct() {
         assertEquals(88, new CalculatorService().Mul(11, 8).getResult());
     }
 
     @Test
-    public void testDiv() {
+    @DisplayName("Division returns the quotient")
+    void divideReturnsQuotient() {
         assertEquals(1, new CalculatorService().Div(12, 12).getResult());
     }
 }
